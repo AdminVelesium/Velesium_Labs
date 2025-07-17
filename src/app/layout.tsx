@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Lenis from "@studio-freight/lenis";
+import { useEffect } from "react";
 
 import {
   Inter,

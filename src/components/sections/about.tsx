@@ -116,25 +116,6 @@ export default function About() {
             ROI, and consistently deliver businesses high implementation success
             rates.
           </p>
-
-          <div ref={statsRef} className="grid grid-cols-2 gap-8 pt-8">
-            <div>
-              <div className="text-4xl font-bold mb-2">
-                <span className="counter">50</span>+
-              </div>
-              <div className="text-sm font-poppins opacity-60">
-                PROJECTS COMPLETED
-              </div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">
-                <span className="counter">5</span>+
-              </div>
-              <div className="text-sm font-poppins opacity-60">
-                YEARS EXPERIENCE
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
