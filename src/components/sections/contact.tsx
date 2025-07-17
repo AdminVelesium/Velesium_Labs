@@ -17,9 +17,25 @@ export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contactInfoRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+
   const [isPending, setIsPending] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState("");
   const [submitError, setSubmitError] = useState("");
+  const form = formRef.current;
+  if (form) {
+    gsap.set(form, { x: 30, opacity: 0 });
+    gsap.to(form, {
+      x: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: form,
+        start: "top 80%",
+      },
+    });
+  }
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -72,15 +88,29 @@ export default function Contact() {
       ease: "power3.out",
       scrollTrigger: { trigger: contactInfo, start: "top 80%" },
     });
+    const form = formRef.current;
+    if (form) {
+      gsap.set(form, { x: 30, opacity: 0 });
+      gsap.to(form, {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: form,
+          start: "top 80%",
+        },
+      });
+    }
   }, []);
 
   return (
     <section
       id="contact"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center px-6 md:px-8 py-0 pt-10"
+      className="relative py-20 px-6 md:px-8"
     >
-      <div className="max-w-6xl mx-auto w-full">
+      <div className="max-w-6xl mx-auto w- font-poppins">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Side: Text & Contact Info */}
           <div>
@@ -113,7 +143,7 @@ export default function Contact() {
           </div>
 
           {/* Right Side: Form or Messages */}
-          <div className="w-full max-w-md ml-auto">
+          <div ref={formRef} className="w-full max-w-md ml-auto">
             {submitSuccess && (
               <div className="px-6 py-4 rounded bg-green-600/80 text-white font-semibold ring-2 ring-green-400">
                 {submitSuccess}

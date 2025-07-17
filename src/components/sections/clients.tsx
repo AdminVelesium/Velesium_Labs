@@ -48,7 +48,10 @@ export default function Clients() {
     // Title animation
     const titleWords = title.textContent?.split(" ") || [];
     title.innerHTML = titleWords
-      .map((word) => `<span class="word">${word}</span>`)
+      .map((word, i) => {
+        const colorClass = i === 0 ? "text-white" : "text-green-400";
+        return `<span class="word inline-block mr-2 ${colorClass}">${word}</span>`;
+      })
       .join(" ");
 
     const words = title.querySelectorAll(".word");
@@ -71,14 +74,17 @@ export default function Clients() {
     <section
       id="process"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center px-6 md:px-8 py-0 pt-10"
+      className="relative py-20 px-6 md:px-8"
     >
       <div className="max-w-6xl mx-auto w-full">
         <div className="text-center space-y-12 w-full">
-          <h2 ref={titleRef} className="text-4xl md:text-6xl font-bold">
+          <h3
+            ref={titleRef}
+            className="text-5xl font-bold text-white font-sans text-center mb-2 md:mb-4"
+          >
             <span className="text-white">Our </span>
             <span className="text-green-400">Clients</span>
-          </h2>
+          </h3>
           <div className="relative w-full overflow-hidden py-8">
             <div className="flex gap-12 animate-marquee whitespace-nowrap px-10">
               {logos.map((src, index) => (

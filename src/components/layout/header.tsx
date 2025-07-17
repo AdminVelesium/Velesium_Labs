@@ -73,7 +73,10 @@ export default function Header() {
         </div>
 
         {/* Navigation */}
-        <div ref={navRef} className="hidden md:flex items-center space-x-9">
+        <div
+          ref={navRef}
+          className="hidden md:flex font-inter items-center space-x-9"
+        >
           <a
             href="/About"
             className="text-lg font-light hover:text-green-400 transition-colors duration-300 relative group"

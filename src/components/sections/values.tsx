@@ -70,11 +70,13 @@ export default function Values() {
     if (!section || !title) return;
 
     // Title animation
-    const titleWords = title.textContent?.split(" ") || [];
+    const titleWords = ["Our", "Values"];
     title.innerHTML = titleWords
-      .map((word) => `<span class="word">${word}</span>`)
+      .map((word, i) => {
+        const colorClass = i === 0 ? "text-white" : "text-green-400";
+        return `<span class="word inline-block mr-2 ${colorClass}">${word}</span>`;
+      })
       .join(" ");
-
     const words = title.querySelectorAll(".word");
     gsap.set(words, { y: 100, opacity: 0 });
 
@@ -135,19 +137,19 @@ export default function Values() {
     <section
       id="works"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center px-6 md:px-8 py-0 pt-10"
+      className="relative py-20 px-6 md:px-8"
     >
       <div className="max-w-6xl mx-auto w-full">
-        <div className="space-y-8">
+        <div className="space-y-4">
           <h3
             ref={titleRef}
-            className="text-5xl font-bold text-white text-center mb-2 md:mb-4"
+            className="text-5xl font-bold text-white text-center font-sans mb-2 md:mb-4"
           >
             <span className="text-white">Our </span>
             <span className="text-green-400">Values</span>
           </h3>
 
-          <div className="relative w-full h-[600px] flex items-center justify-center -mt-4 md:-mt-6">
+          <div className="relative w-full h-[600px] flex items-center justify-center -mt-4 md:-mt-6 font-poppins">
             {order.map((valIdx, posIdx) => {
               const value = values[valIdx];
               const isCenter = posIdx === 2;

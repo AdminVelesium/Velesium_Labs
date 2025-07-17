@@ -1,17 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react"; // Import useState
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { Play } from "lucide-react";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
-  const numberRef = useRef<HTMLDivElement>(null);
-  const playButtonRef = useRef<HTMLDivElement>(null);
-
-  // Vanta.js specific refs and state
+  const numberRef = useRef<HTMLDivElement>(null); // Still defined if you want to use it
   const vantaRef = useRef(null);
   const [vantaEffect, setVantaEffect] = useState<any>(null);
 
@@ -54,6 +50,7 @@ export default function Hero() {
             scaleMobile: 1.0,
             color: 0x0ab80a, // Green color
             backgroundColor: 0x000000, // Black background
+            maxFrameRate: 30,
           });
           setVantaEffect(effect);
         }
@@ -68,58 +65,20 @@ export default function Hero() {
     return () => {
       if (vantaEffect) vantaEffect.destroy();
     };
-  }, [vantaEffect]); // Re-run effect if vantaEffect changes (e.g., on hot reload)
+  }, [vantaEffect]);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const title = titleRef.current;
-    const description = descriptionRef.current;
-    const number = numberRef.current;
-    const playButton = playButtonRef.current;
+    if (!descriptionRef.current || !numberRef.current) return;
 
-    if (!section || !title || !description || !number || !playButton) return;
-
-    // Split text into spans for animation
-    const titleLines = title.querySelectorAll(".title-line");
-
-    titleLines.forEach((line) => {
-      const text = line.textContent || "";
-      line.innerHTML = text
-        .split("")
-        .map(
-          (char, i) =>
-            `<span style="display: inline-block; transform: translateY(100px); opacity: 0;">${
-              char === " " ? "&nbsp;" : char
-            }</span>`
-        )
-        .join("");
+    gsap.set([descriptionRef.current, numberRef.current], {
+      opacity: 0,
+      y: 50,
     });
 
-    // Initial states
-    gsap.set([description, number, playButton], { opacity: 0, y: 50 });
+    const tl = gsap.timeline({ delay: 4 });
 
-    // Main timeline
-    const tl = gsap.timeline({ delay: 3 });
-
-    // Animate title characters
-    titleLines.forEach((line, lineIndex) => {
-      const chars = line.querySelectorAll("span");
-      tl.to(
-        chars,
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.02,
-          ease: "power3.out",
-        },
-        lineIndex * 0.2
-      );
-    });
-
-    // Animate other elements
     tl.to(
-      [description, number],
+      [descriptionRef.current, numberRef.current],
       {
         opacity: 1,
         y: 0,
@@ -127,53 +86,40 @@ export default function Hero() {
         stagger: 0.2,
         ease: "power3.out",
       },
-      "-=0.5"
-    ).to(
-      playButton,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-      },
-      "-=0.3"
+      0
     );
-
-    // Parallax effect on scroll
-    gsap.to(title, {
-      y: -100,
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
   }, []);
 
   return (
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center px-6 md:px-8 overflow-hidden "
+      className="relative h-screen flex items-center justify-center px-6 md:px-8 overflow-hidden"
     >
-      {/* Vanta.js background */}
-      <div ref={vantaRef} className="absolute inset-0 z-0"></div>
+      {/* Vanta background */}
+      <div ref={vantaRef} className="absolute inset-0 z-0" />
 
-      {/* Section number */}
-
-      {/* Hero text */}
-      <div className="text-center max-w-6xl mx-auto z-10">
-        <h1
-          ref={titleRef}
-          className="text-6xl md:text-6xl lg:text-5xl xl:text-7xl font-bold leading-none tracking-tight"
-        >
-          <div className="title-line mb-2 md:mb-4">Turning Business</div>
-          <div className="title-line mb-2 md:mb-4">
-            Problems Into Working AI System
-          </div>
-          <div className="title-line relative">Smart Data. Practical AI</div>
+      {/* Content */}
+      <div className="text-center max-w-4xl mx-auto z-10">
+        <h1 className="text-5xl font-nowOutline md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white">
+          <Typewriter
+            words={["Turning Business Problems...", "Into Working AI Systems."]}
+            loop={false}
+            cursor
+            cursorStyle="_"
+            typeSpeed={50}
+            deleteSpeed={20}
+            delaySpeed={1500}
+          />
         </h1>
+
+        {/* Optional Description */}
+        <div
+          ref={descriptionRef}
+          className="mt-6 font-nowOutline text-4xl text-gray-300 max-w-xl mx-auto"
+        >
+          Smart Data. Practical AI.
+        </div>
       </div>
     </section>
   );

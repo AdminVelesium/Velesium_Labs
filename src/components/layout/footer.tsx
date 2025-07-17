@@ -33,15 +33,19 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 mb-8 md:mb-0">
             <div className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center">
-              <img
-                src="/Logo_White with c.png"
-                alt="Logo"
-                className="w-full h-full object-contain"
-              />
+              <a href="/">
+                <img
+                  src="/Logo_White with c.png"
+                  alt="Logo"
+                  className="w-full h-full object-contain"
+                />
+              </a>
             </div>
-            <span className="text-2xl font-light tracking-wider">
-              Velesium Labs
-            </span>
+            <a>
+              <span className="text-3xl tracking-wider font-inter uppercase">
+                Velesium Lab
+              </span>
+            </a>
           </div>
 
           <div className="flex space-x-6">

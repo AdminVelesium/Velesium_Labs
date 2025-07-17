@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/layout/header";
 import CustomCursor from "@/components/ui/custom-cursor";
+import Footer from "@/components/layout/footer";
 
 const services = [
   {
@@ -29,14 +30,16 @@ const Page = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="text-center py-0 px-6 pt-24">
+      <section className="text-center font-sans px-6 pt-24">
         <motion.h1
           className="text-4xl md:text-6xl font-bold "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Velesium Academy – Learn by Doing. Build What Matters.
+          Velesium
+          <span className="text-green-400"> Academy</span>
+          <div className="text-2xl"> Learn by Doing. Build What Matters.</div>
         </motion.h1>
         <motion.p
           className="text-lg md:text-xl text-gray-400 mt-6 max-w-3xl mx-auto"
@@ -48,10 +51,11 @@ const Page = () => {
           skills with mentorship, bootcamps, and hands-on projects in AI,
           DevOps, and beyond.
         </motion.p>
+        <br />
       </section>
 
       {/* Services Grid */}
-      <section className="grid md:grid-cols-3 gap-10 px-6 md:px-20 pb-20">
+      <section className="grid md:grid-cols-3 font-poppins gap-10 px-6 md:px-20 pb-20">
         {services.map((item, idx) => (
           <motion.div
             key={idx}
@@ -70,7 +74,7 @@ const Page = () => {
       </section>
 
       {/* Features List */}
-      <section className="text-center bg-zinc-950 px-6 md:px-20 py-20">
+      <section className="text-center font-poppins py-20">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -100,27 +104,7 @@ const Page = () => {
           </ul>
         </motion.div>
       </section>
-
-      {/* Call to Action */}
-      <section className="text-center px-6 md:px-20 py-20 bg-black">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold text-green-400 mb-4">
-            Ready to Get Started?
-          </h2>
-          <p className="text-gray-300 text-lg mb-6 max-w-xl mx-auto">
-            Explore our programs or reach out for custom training. With Velesium
-            Academy, you’re not just learning—you’re building your future.
-          </p>
-          <button className="bg-green-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-green-400 transition">
-            Explore Programs
-          </button>
-        </motion.div>
-      </section>
+      <Footer />
     </div>
   );
 };

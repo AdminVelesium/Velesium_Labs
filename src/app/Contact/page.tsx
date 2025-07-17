@@ -8,7 +8,9 @@ export const page = () => {
     <div>
       <CustomCursor />
       <Header />
-      <main>
+      <main
+        className="relative py-20 px-6 md:px-8" // changed from h-screen
+      >
         <Contact />
       </main>
 

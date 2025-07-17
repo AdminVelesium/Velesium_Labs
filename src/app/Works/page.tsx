@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/layout/header";
 import CustomCursor from "@/components/ui/custom-cursor";
+import Footer from "@/components/layout/footer";
 
 const useCases = [
   {
@@ -222,19 +223,26 @@ const Page = () => {
     <div className="bg-black text-white">
       <CustomCursor />
       <Header />
-
-      <section className="text-center py-0 px-6 pt-24">
+      <section className="text-center font-sans py-0 px-6 pt-24">
         <motion.h1
-          className="text-4xl md:text-6xl font-bold text-green-400"
+          className="text-4xl md:text-6xl font-bold "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Our Work: Intelligent Solutions. Real Impact.
+          Our
+          <span className="text-green-400"> Work</span>
         </motion.h1>
+        <motion.p
+          className="text-lg md:text-xl text-gray-400 mt-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Intelligent Solutions. Real Impact.
+        </motion.p>
       </section>
-
-      <section className="grid md:grid-cols-2 gap-12 px-6 md:px-20 pb-20 py-10">
+      <section className="grid md:grid-cols-2 font-poppins gap-12 px-6 md:px-20 pb-20 py-10">
         {useCases.map((item, idx) => (
           <motion.div
             key={idx}
@@ -282,7 +290,8 @@ const Page = () => {
             </p>
           </motion.div>
         ))}
-      </section>
+      </section>{" "}
+      <Footer />
     </div>
   );
 };
