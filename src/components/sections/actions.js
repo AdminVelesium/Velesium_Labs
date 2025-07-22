@@ -1,10 +1,13 @@
 "use server";
 const googleScriptURL =
-  "https://script.google.com/macros/s/AKfycbytfx66EJyfisV2xYtEmn-cZV3XSPSQwuHjPs59mh41TdI92EhU-TnOjOP47GXrH6Vu/exec";
+  "https://script.google.com/macros/s/AKfycbzjT46w54F4rKzCMRiV4fHOXxNBzHyuI9Vja8gis45XUATfESPENR5PFTNs2TpfVK-tnA/exec";
+
 export const addRegistration = async (formData) => {
   const fullName = formData.get("fullName");
   const email = formData.get("email");
+  const heardFrom = formData.get("heardFrom"); // ✅ Capture dropdown value
   const message = formData.get("message");
+
   try {
     const res = await fetch(googleScriptURL, {
       method: "POST",
@@ -15,6 +18,7 @@ export const addRegistration = async (formData) => {
         event: "Velesium lab",
         fullName,
         email,
+        heardFrom, // ✅ Send to script
         message,
       }),
     });

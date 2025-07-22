@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Lenis from "@studio-freight/lenis";
-import { useEffect } from "react";
-
 import {
   Inter,
   DM_Sans,
@@ -11,7 +8,8 @@ import {
   Poppins,
   Playfair_Display_SC,
 } from "next/font/google";
-
+import ClientLayout from "@/components/ui/ClientLayout";
+import { Analytics } from "@vercel/analytics/next";
 const playfairSC = Playfair_Display_SC({
   subsets: ["latin"],
   weight: "400",
@@ -52,7 +50,10 @@ export default function RootLayout({
       <body
         className={`${playfairSC.variable} ${inter.variable} ${dmSans.variable} ${playfair.variable} ${jakarta.variable} ${poppins.variable} cursor-none`}
       >
-        {children}
+        <ClientLayout>
+          {children}
+          <Analytics />
+        </ClientLayout>
       </body>
     </html>
   );

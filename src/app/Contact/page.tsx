@@ -3,9 +3,13 @@ import Header from "@/components/layout/header";
 import CustomCursor from "@/components/ui/custom-cursor";
 import Contact from "@/components/sections/contact";
 import Footer from "@/components/layout/footer";
-export const page = () => {
+import BackgroundManager from "@/components/backgrounds/background-manager";
+
+export default function page() {
   return (
     <div>
+      <BackgroundManager />
+
       <CustomCursor />
       <Header />
       <main
@@ -17,5 +21,4 @@ export const page = () => {
       <Footer />
     </div>
   );
-};
-export default page;
+}

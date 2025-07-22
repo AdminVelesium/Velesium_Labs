@@ -7,31 +7,35 @@ import { motion } from "framer-motion";
 const services = [
   {
     title: "Business Automation",
-    desc: "Streamline operations with AI-powered workflows that eliminate manual tasks, boost efficiency, and scale effortlessly across teams and systems",
+    desc: "Automate repetitive tasks and workflows using intelligent systems to boost efficiency and reduce operational overhead.",
   },
   {
-    title: "Computer Vision and NLP",
-    desc: "Transform unstructured data into insight with advanced visual recognition and language understanding tailored to your business use cases.",
+    title: "Computer Vision ",
+    desc: "Extract insights from images and videos for use cases like surveillance, quality control, and visual search.",
+  },
+  {
+    title: "Natural Language Processing (NLP)",
+    desc: " Build AI systems that understand, generate, and interact using human language across documents, chats, and speech.",
   },
   {
     title: "GenAi ",
-    desc: "Leverage next-gen generative AI to create intelligent content, automate knowledge work, and power smarter business interactions.",
+    desc: "Deploy large language models to create content, personalize experiences, and automate creative and cognitive tasks.",
   },
   {
     title: "Agentic AI",
-    desc: " Deploy autonomous AI agents that can reason, act, and adapt — designed to handle complex business tasks with minimal human input.",
+    desc: "Design autonomous, goal-driven agents capable of decision-making, planning, and multi-step execution.",
   },
   {
-    title: "Advanced Analytics and Reporting",
-    desc: " Make faster, smarter decisions with data pipelines, predictive insights, and dashboards built for clarity, action, and scale.",
+    title: "Predictive & Prescriptive Analytics",
+    desc: " Use machine learning to forecast trends and recommend optimal actions for data-informed decision-making.",
   },
   {
     title: "Training and Research",
-    desc: "Upskill your teams and stay ahead with tailored AI training programs and applied research aligned with your industry’s future.",
+    desc: "Offer advanced workshops, mentorship, and research collaboration to upskill teams and explore cutting-edge AI applications.",
   },
   {
-    title: "Product Development",
-    desc: " Build AI-driven digital products from concept to launch — with architecture, design, and engineering optimized for speed and success.",
+    title: "Custom AI",
+    desc: "Product Development From idea to production, we build end-to-end AI solutions tailored to your business needs and scale objectives.",
   },
 ];
 
@@ -75,22 +79,23 @@ export default function Services() {
   return (
     <section id="team" ref={sectionRef} className="relative py-20 px-6 md:px-8">
       <div className="max-w-6xl mx-auto w-full relative z-10">
-        <div className="space-y-12 w-full text-center">
-          <h3
-            ref={titleRef}
-            className="text-5xl font-bold text-white text-center font-sans mb-2 md:mb-4"
-          >
-            <span className="text-white">Our </span>
-            <span className="text-green-400">Services</span>
-          </h3>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+        <div className="w-full text-center">
+          <h2 className="text-5xl font-bold text-white font-sans text-center mb-4">
+            <span className="relative inline-block">
+              <span className="text-white">Our</span>
+              <span className="absolute left-0 bottom-[-6px] h-[2px] w-[150%] bg-green-400"></span>
+            </span>
+            <span className="text-green-400 ml-2">Services</span>
+          </h2>
+
+          <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-4 mt-2">
             Your partner in building scalable, intelligent AI systems that
             deliver real business value.
           </p>
-          <div className="grid gap-8 text-left mt-10 font-poppins">
-            {/* First row: 4 cards */}
+
+          <div className="grid gap-4 text-left mt-2 font-poppins">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {services.slice(0, 4).map((service, index) => (
+              {services.slice(0, 8).map((service, index) => (
                 <motion.div
                   key={index}
                   className="service-item border border-green-500 bg-black/50 p-6 rounded-lg shadow-md shadow-green-500/20 cursor-pointer"
@@ -129,53 +134,7 @@ export default function Services() {
                   </h4>
                   <p className="text-gray-300">{service.desc}</p>
                 </motion.div>
-              ))}
-            </div>
-
-            {/* Second row: 3 cards centered */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mx-auto">
-              {services.slice(4).map((service, index) => (
-                <motion.div
-                  key={index + 4}
-                  className="service-item border border-green-500 bg-black/50 p-6 rounded-lg shadow-md shadow-green-500/20 cursor-pointer"
-                  initial={{ opacity: 0, y: 50, rotateX: -30 }}
-                  animate={{
-                    opacity:
-                      selectedService === null || selectedService === index + 4
-                        ? 1
-                        : 0.6,
-                    y: selectedService === index + 4 ? -10 : 0,
-                    rotateX: selectedService === index + 4 ? 0 : -30,
-                    scale: selectedService === index + 4 ? 1.05 : 1,
-                    borderColor:
-                      selectedService === index + 4 ? "#4ade80" : "#22c55e",
-                    backgroundColor:
-                      selectedService === index + 4
-                        ? "rgba(34, 197, 94, 0.2)"
-                        : "rgba(0,0,0,0.5)",
-                    boxShadow:
-                      selectedService === index + 4
-                        ? "0 0 25px rgba(74, 222, 128, 0.6)"
-                        : "0 0 0 rgba(0,0,0,0)",
-                  }}
-                  transition={{ type: "spring", stiffness: 150, damping: 20 }}
-                  whileHover={{
-                    scale: selectedService === index + 4 ? 1.05 : 1.02,
-                    boxShadow: "0 0 20px rgba(74, 222, 128, 0.4)",
-                    borderColor: "#4ade80",
-                  }}
-                  onClick={() =>
-                    setSelectedService(
-                      selectedService === index + 4 ? null : index + 4
-                    )
-                  }
-                >
-                  <h4 className="text-xl font-semibold text-green-400 mb-2">
-                    {service.title}
-                  </h4>
-                  <p className="text-gray-300">{service.desc}</p>
-                </motion.div>
-              ))}
+              ))}{" "}
             </div>
           </div>
         </div>

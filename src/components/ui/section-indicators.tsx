@@ -1,69 +1,65 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { useEffect, useState } from "react";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-const sections = ["hero", "about", "works", "process", "team", "contact"];
+const sections = [
+  { id: "hero", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "works", label: "Values" },
+  { id: "process", label: "Clients" },
+  { id: "team", label: "Services" },
+  { id: "contact", label: "Contact" },
+];
 
 export default function SectionIndicators() {
-  const [activeSection, setActiveSection] = useState(0);
-  const indicatorsRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    const indicators = indicatorsRef.current;
-    if (!indicators) return;
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-    // Animate indicators on load
-    gsap.from(indicators.children, {
-      x: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      delay: 3,
-      ease: "power3.out",
-    });
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
 
-    // Track active section
-    sections.forEach((sectionId, index) => {
-      ScrollTrigger.create({
-        trigger: `#${sectionId}`,
-        start: "top 50%",
-        end: "bottom 50%",
-        onEnter: () => setActiveSection(index),
-        onEnterBack: () => setActiveSection(index),
-      });
-    });
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (index: number) => {
-    const element = document.getElementById(sections[index]);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
-      gsap.to(window, {
-        duration: 1.5,
-        scrollTo: { y: element, offsetY: 0 },
-        ease: "power3.inOut",
-      });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <div
-      ref={indicatorsRef}
-      className="fixed right-14 top-1/2 -translate-y-1/2 z-40 space-y-4"
-    >
-      {sections.map((_, index) => (
-        <button
-          key={index}
-          onClick={() => scrollToSection(index)}
-          className={`w-2 h-2 rounded-full transition-all duration-300 magnetic-button ${
-            activeSection === index ? "bg-green-400 scale-125" : "bg-white/30"
-          }`}
-        />
-      ))}
+    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
+      <div className="flex flex-col space-y-4">
+        {sections.map((section) => (
+          <button
+            key={section.id}
+            onClick={() => scrollToSection(section.id)}
+            className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
+              activeSection === section.id
+                ? "bg-green-400 border-green-400 scale-125"
+                : "bg-transparent border-white hover:border-green-400"
+            }`}
+            title={section.label}
+          />
+        ))}
+      </div>
     </div>
   );
 }

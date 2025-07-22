@@ -116,10 +116,17 @@ export default function Contact() {
           <div>
             <h2
               ref={titleRef}
-              className="text-4xl md:text-6xl font-extrabold uppercase mb-8 leading-tight"
+              className="text-4xl md:text-6xl font-extrabold uppercase leading-tight"
             >
-              LET'S WORK TOGETHER
+              Future-Ready?
             </h2>
+            <h2
+              ref={titleRef}
+              className="text-4xl md:text-6xl font-extrabold uppercase leading-tight"
+            >
+              Let’s Co-Create
+            </h2>
+
             <div className="w-24 h-1 bg-green-500 mb-8"></div>
             <p className="text-base md:text-lg text-gray-300 mb-8">
               Ready to bring your vision to life? Get in touch and let's create
@@ -129,15 +136,12 @@ export default function Contact() {
             <div ref={contactInfoRef} className="space-y-4">
               <div className="contact-item flex items-center space-x-4">
                 <Mail className="w-5 h-5 text-green-500" />
-                <span>hello@velesiumlabs.ai</span>
+                <span>admin@velesium.ai</span>
               </div>
-              <div className="contact-item flex items-center space-x-4">
-                <Phone className="w-5 h-5 text-green-500" />
-                <span>+1 (555) 123-4567</span>
-              </div>
+
               <div className="contact-item flex items-center space-x-4">
                 <MapPin className="w-5 h-5 text-green-500" />
-                <span>New York, NY</span>
+                <span>Bangalore</span>
               </div>
             </div>
           </div>
@@ -170,6 +174,41 @@ export default function Contact() {
                   required
                   className="w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-400 py-2 focus:outline-none"
                 />
+                <select
+                  name="heardFrom"
+                  required
+                  defaultValue=""
+                  className="w-full bg-transparent border-b border-gray-600 text-white py-2 focus:outline-none appearance-none"
+                >
+                  <option value="" className="text-gray-400" disabled hidden>
+                    How did you hear about us?
+                  </option>
+                  <option className="bg-black text-white" value="LinkedIn">
+                    LinkedIn
+                  </option>
+                  <option className="bg-black text-white" value="Youtube">
+                    YouTube
+                  </option>
+                  <option className="bg-black text-white" value="Instagram">
+                    Instagram
+                  </option>
+                  <option className="bg-black text-white" value="Web Search">
+                    Web Search
+                  </option>
+                  <option className="bg-black text-white" value="Referral">
+                    Referral
+                  </option>
+                  <option
+                    className="bg-black text-white"
+                    value="Event/Conference"
+                  >
+                    Event/Conference
+                  </option>
+                  <option className="bg-black text-white" value="Other">
+                    Other
+                  </option>
+                </select>
+
                 <textarea
                   name="message"
                   placeholder="Your Message"

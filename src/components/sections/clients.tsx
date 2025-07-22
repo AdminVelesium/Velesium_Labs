@@ -78,14 +78,15 @@ export default function Clients() {
     >
       <div className="max-w-6xl mx-auto w-full">
         <div className="text-center space-y-12 w-full">
-          <h3
-            ref={titleRef}
-            className="text-5xl font-bold text-white font-sans text-center mb-2 md:mb-4"
-          >
-            <span className="text-white">Our </span>
-            <span className="text-green-400">Clients</span>
-          </h3>
-          <div className="relative w-full overflow-hidden py-8">
+          <h2 className="text-5xl font-bold text-white font-sans text-center mb-8">
+            <span className="relative inline-block">
+              <span className="text-white">Our</span>
+              <span className="absolute left-0 bottom-[-6px] h-[2px] w-[150%] bg-green-400"></span>
+            </span>
+            <span className="text-green-400 ml-2">Clients</span>
+          </h2>
+
+          <div className="relative w-full overflow-hidden py-1">
             <div className="flex gap-12 animate-marquee whitespace-nowrap px-10">
               {logos.map((src, index) => (
                 <Image

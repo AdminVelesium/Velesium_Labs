@@ -18,11 +18,10 @@ export default function About() {
     if (!section || !title || !content || !stats) return;
 
     // Split title into words for animation
-    const titleText = title.textContent || "";
-    title.innerHTML = titleText
-      .split(" ")
+    const titleWords = title.textContent?.split(" ") || [];
+    title.innerHTML = titleWords
       .map((word, i) => {
-        const colorClass = i === 1 ? "text-green-400" : "text-white";
+        const colorClass = i === 0 ? "text-white" : "text-green-400";
         return `<span class="word inline-block mr-2 ${colorClass}">${word}</span>`;
       })
       .join(" ");
@@ -101,20 +100,29 @@ export default function About() {
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
         <div>
-          <h2 ref={titleRef} className="text-4xl md:text-6xl font-sans">
-            About Us
-          </h2>
-
-          <div className="w-20 h-0.5 bg-green-400 mb-8"></div>
+          <h3 ref={titleRef} className="text-4xl md:text-6xl font-sans">
+            <span className="text-white">About </span>
+            <span className="text-green-400">Us</span>
+          </h3>
+          <div className="w-28 h-0.5 bg-green-400 mb-2"></div>{" "}
+          <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+            AI Consulting for Scalable, Production-Ready Solutions
+          </p>
         </div>
 
-        <div ref={contentRef} className="space-y-4">
-          <p className="text-lg md:text-xl font-light font-poppins leading-relaxed opacity-80">
-            Our expert team designs, implements, and operationalizes AI
-            solutions that solve real business problems. With a focus on
-            execution, automation, and scale, we reduce resource waste, maximize
-            ROI, and consistently deliver businesses high implementation success
-            rates.
+        <div ref={contentRef} className="space-y-2  ">
+          <p className="text-sm md:text-lg text-center font-bold font-poppins leading-relaxed opacity-80">
+            Velesium Labs is a leading AI and data consulting firm helping
+            startups and enterprises build scalable, production-ready solutions.
+          </p>
+          <p className="text-sm md:text-lg text-center  font-poppins leading-relaxed opacity-80">
+            We specialize in applied AI, machine learning, NLP, generative AI,
+            and automation — turning prototypes into real-world impact. In a
+            world where most AI models never ship, we focus on implementation at
+            scale to ensure your investment delivers measurable value. Whether
+            it's an MVP or enterprise transformation, we combine deep tech
+            expertise with agile execution to turn data into decisions and
+            innovation into results.
           </p>
         </div>
       </div>

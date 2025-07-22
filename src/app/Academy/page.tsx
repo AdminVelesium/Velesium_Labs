@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Header from "@/components/layout/header";
 import CustomCursor from "@/components/ui/custom-cursor";
 import Footer from "@/components/layout/footer";
+import BackgroundManager from "@/components/backgrounds/background-manager";
 
 const services = [
   {
@@ -23,9 +24,11 @@ const services = [
   },
 ];
 
-const Page = () => {
+export default function page() {
   return (
     <div className="bg-black text-white">
+      <BackgroundManager />
+
       <CustomCursor />
       <Header />
 
@@ -52,10 +55,11 @@ const Page = () => {
           DevOps, and beyond.
         </motion.p>
         <br />
+        <br />
       </section>
 
       {/* Services Grid */}
-      <section className="grid md:grid-cols-3 font-poppins gap-10 px-6 md:px-20 pb-20">
+      <section className="grid md:grid-cols-3 font-poppins gap-20 px-6 md:px-20 ">
         {services.map((item, idx) => (
           <motion.div
             key={idx}
@@ -107,6 +111,4 @@ const Page = () => {
       <Footer />
     </div>
   );
-};
-
-export default Page;
+}

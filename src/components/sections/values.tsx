@@ -6,24 +6,24 @@ import { motion } from "framer-motion";
 
 const values = [
   {
-    title: "Stringent Privacy & Security",
-    desc: "Protecting data and upholding rigorous security practices are non‑negotiable in all our work.",
+    title: "Smart Data",
+    desc: " We focus on clean, actionable data that drives real decisions.",
   },
   {
-    title: "First‑Principles Thinking",
-    desc: "We tackle problems at their core, stripping away assumptions to arrive at truly innovative solutions.",
+    title: "Practical AI",
+    desc: " We build AI solutions that solve real-world problems — not just theoretical ones.",
   },
   {
-    title: "Bias for Action",
-    desc: "We believe in moving quickly, iterating often, and taking action rather than waiting for perfect conditions.",
+    title: "Client-First",
+    desc: " Your goals shape our approach — we co-create every step of the way.",
   },
   {
-    title: "Long‑Term Mindset",
-    desc: "We look beyond immediate wins to create lasting value, helping our clients sustain growth and success over time.",
+    title: "ROI-Driven",
+    desc: "Every solution we build is designed to deliver measurable business value.",
   },
   {
-    title: "Client Obsession",
-    desc: "We treat each client's objectives as if they were our own, immersing ourselves in their challenges and aspirations.",
+    title: "Built for Production",
+    desc: " We specialize in taking AI from prototype to production — fast and reliably.",
   },
 ];
 
@@ -42,34 +42,33 @@ export default function Values() {
   const [order, setOrder] = useState([0, 1, 2, 3, 4]); // Initial order of values
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Function to rotate the values
+  // Rotate values by shifting array
   const rotateValues = useCallback(() => {
     setOrder((prevOrder) => {
       const newOrder = [...prevOrder];
-      // Shift the array to rotate which value is in the center (index 2)
-      const firstElement = newOrder.shift();
-      if (firstElement !== undefined) {
-        newOrder.push(firstElement);
-      }
+      const first = newOrder.shift();
+      if (first !== undefined) newOrder.push(first);
       return newOrder;
     });
   }, []);
 
-  // Function to start/reset the auto-rotation timer
+  // Start or restart auto rotation interval
   const startAutoRotation = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
-    intervalRef.current = setInterval(rotateValues, 7000); // Rotate every 7 seconds
+    intervalRef.current = setInterval(() => {
+      rotateValues();
+    }, 5000);
   }, [rotateValues]);
 
   useEffect(() => {
     const section = sectionRef.current;
     const title = titleRef.current;
-
     if (!section || !title) return;
 
-    // Title animation
+    // Animate title words with GSAP
     const titleWords = ["Our", "Values"];
     title.innerHTML = titleWords
       .map((word, i) => {
@@ -79,58 +78,50 @@ export default function Values() {
       .join(" ");
     const words = title.querySelectorAll(".word");
     gsap.set(words, { y: 100, opacity: 0 });
-
     gsap.to(words, {
       y: 0,
       opacity: 1,
       duration: 0.8,
       stagger: 0.2,
       ease: "power3.out",
-      scrollTrigger: {
-        trigger: title,
-        start: "top 80%",
-      },
+      scrollTrigger: { trigger: title, start: "top 80%" },
     });
 
-    // Start auto-rotation when component mounts
+    // Start auto rotation
     startAutoRotation();
 
-    // Cleanup interval on component unmount
+    // Cleanup interval on unmount
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
+        intervalRef.current = null;
       }
     };
   }, [startAutoRotation]);
 
+  // When box clicked, rotate so clicked box comes to center (posIdx 2)
   const handleClick = (clickedPosIdx: number) => {
-    // Pause auto-rotation temporarily
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
 
     setOrder((prevOrder) => {
       const newOrder = [...prevOrder];
       const clickedValueIdx = prevOrder[clickedPosIdx];
-
-      // Find the current index of the clicked value in the `values` array
-      // (This part of the logic was slightly over-complicated, simplifying for direct rotation)
-      const currentOrderIndex = newOrder.indexOf(clickedValueIdx);
+      const currentIndex = newOrder.indexOf(clickedValueIdx);
       const shiftsNeeded =
-        (2 - currentOrderIndex + newOrder.length) % newOrder.length;
-
-      // Perform the shifts
+        (2 - currentIndex + newOrder.length) % newOrder.length;
       for (let i = 0; i < shiftsNeeded; i++) {
-        const firstElement = newOrder.shift();
-        if (firstElement !== undefined) {
-          newOrder.push(firstElement);
-        }
+        const first = newOrder.shift();
+        if (first !== undefined) newOrder.push(first);
       }
       return newOrder;
     });
 
-    // Resume auto-rotation after a short delay
-    setTimeout(startAutoRotation, 3000); // Resume after 3 seconds
+    setTimeout(() => {
+      startAutoRotation();
+    }, 3000);
   };
 
   return (
@@ -141,15 +132,14 @@ export default function Values() {
     >
       <div className="max-w-6xl mx-auto w-full">
         <div className="space-y-4">
-          <h3
+          <h2
             ref={titleRef}
-            className="text-5xl font-bold text-white text-center font-sans mb-2 md:mb-4"
+            className="text-5xl font-bold text-white font-sans text-center mb-8"
           >
-            <span className="text-white">Our </span>
-            <span className="text-green-400">Values</span>
-          </h3>
+            {/* GSAP will inject animated title */}
+          </h2>
 
-          <div className="relative w-full h-[600px] flex items-center justify-center -mt-4 md:-mt-6 font-poppins">
+          <div className="relative w-full h-[480px] flex items-center justify-center -mt-4 md:-mt-6 font-poppins">
             {order.map((valIdx, posIdx) => {
               const value = values[valIdx];
               const isCenter = posIdx === 2;
@@ -162,12 +152,11 @@ export default function Values() {
                     scale: isCenter ? 1.15 : 1,
                     zIndex: isCenter ? 10 : 1,
                   }}
-                  // Adjusted stiffness and damping for smoother motion
                   transition={{ type: "spring", stiffness: 150, damping: 30 }}
                   onClick={() => handleClick(posIdx)}
-                  className={`absolute w-72 p-6 rounded-xl cursor-pointer ${
+                  className={`absolute w-72 p-6 rounded-xl cursor-pointer select-none ${
                     isCenter
-                      ? "bg-gradient-to-b from-green-900/70 to-black border border-green-500 shadow-lg shadow-green-400/40"
+                      ? "bg-gradient-to-b from-green-900/70 to-black border border-green-500 shadow-lg"
                       : "bg-gradient-to-b from-black/50 to-transparent border border-green-800"
                   }`}
                 >
