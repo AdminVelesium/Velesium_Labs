@@ -21,12 +21,18 @@ const leadership = [
           systems.
         </p>
         <p>
-          He began his career as a Data Scientist at Deloitte Consulting
-          US-India, working across healthcare, pharma, and retail. In 2021, he
-          co-founded Discite Analytics & AI, serving as its CTO and leading:
+          He began his career as a{" "}
+          <span className="text-green-400 font-semibold">
+            Data Scientist at Deloitte Consulting US-India
+          </span>
+          , working across healthcare, pharma, and retail. In 2021, he
+          co-founded{" "}
+          <span className="text-green-400 font-semibold">
+            Discite Analytics & AI
+          </span>
+          , serving as its CTO and leading:
         </p>
 
-        {/* ✅ ul is a sibling, not inside <p> */}
         <ul className="list-disc list-inside space-y-1 my-2 text-gray-300">
           <li>
             A 20-member team across 15+ projects in ML, NLP, Big Data, and IoT.
@@ -39,11 +45,20 @@ const leadership = [
         </ul>
 
         <p>
-          Featured by YourStory as a founding member of a high-potential AI
-          startup, Moulindu continued his journey after Discite’s merger with
-          DynPro Inc. in 2023. He then launched Velesium Labs — with a vision to
-          build scalable, production-ready AI solutions while also nurturing AI
-          education and research through its dedicated Academy.
+          Featured by{" "}
+          <a
+            href="https://yourstory.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-green-400 font-semibold underline"
+          >
+            YourStory
+          </a>{" "}
+          as a founding member of a high-potential AI startup, Moulindu
+          continued his journey after Discite’s merger with DynPro Inc. in 2023.
+          He then launched Velesium Labs — with a vision to build scalable,
+          production-ready AI solutions while also nurturing AI education and
+          research through its dedicated Academy.
         </p>
       </>
     ),
@@ -57,8 +72,12 @@ const leadership = [
       <>
         <p>
           A mathematician and researcher trained at Chennai Mathematical
-          Institute (CMI) and the Max Planck Institute, Germany, Abhishek brings
-          a rare blend of academic brilliance and educational vision.
+          Institute (CMI) and the{" "}
+          <span className="text-green-400 font-semibold">
+            Max Planck Institute, Germany
+          </span>
+          , Abhishek brings a rare blend of academic brilliance and educational
+          vision.
         </p>
         <p>
           He is driven by the belief that India needs a paradigm shift in how
