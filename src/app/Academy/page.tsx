@@ -75,7 +75,7 @@ export default function Page() {
       </section>
 
       {/* Who We Cater To */}
-      <section className="grid md:grid-cols-3 gap-12 py-24 px-6 md:px-20  font-poppins">
+      <section className="grid md:grid-cols-3 gap-12 py-24 px-6 md:px-20 text-justify font-poppins">
         {services.map((item, idx) => (
           <motion.div
             key={idx}

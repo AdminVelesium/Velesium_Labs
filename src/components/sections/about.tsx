@@ -111,11 +111,11 @@ export default function About() {
         </div>
 
         <div ref={contentRef} className="space-y-2  ">
-          <p className="text-sm md:text-lg text-center font-bold font-poppins leading-relaxed opacity-80">
+          <p className="text-sm md:text-lg text-justify font-bold font-poppins leading-relaxed opacity-80">
             Velesium Labs is a leading AI and data consulting firm helping
             startups and enterprises build scalable, production-ready solutions.
           </p>
-          <p className="text-sm md:text-lg text-center  font-poppins leading-relaxed opacity-80">
+          <p className="text-sm md:text-lg text-justify font-poppins leading-relaxed opacity-80">
             We specialize in applied AI, machine learning, NLP, generative AI,
             and automation — turning prototypes into real-world impact. In a
             world where most AI models never ship, we focus on implementation at

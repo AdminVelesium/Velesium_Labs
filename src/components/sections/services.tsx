@@ -18,7 +18,7 @@ const services = [
     desc: " Build AI systems that understand, generate, and interact using human language across documents, chats, and speech.",
   },
   {
-    title: "GenAi ",
+    title: "GenAI ",
     desc: "Deploy large language models to create content, personalize experiences, and automate creative and cognitive tasks.",
   },
   {

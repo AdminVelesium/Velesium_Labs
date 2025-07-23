@@ -25,7 +25,7 @@ export default function Footer() {
             </div>
             <a>
               <span className="text-3xl tracking-wider font-inter uppercase">
-                Velesium Lab
+                Velesium Labs
               </span>
             </a>
           </div>

@@ -110,7 +110,7 @@ export default function Contact() {
       ref={sectionRef}
       className="relative py-20 px-6 md:px-8"
     >
-      <div className="max-w-6xl mx-auto w- font-poppins">
+      <div className="max-w-6xl mx-auto  font-poppins">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Side: Text & Contact Info */}
           <div>

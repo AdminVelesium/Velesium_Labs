@@ -87,13 +87,13 @@ const intelligence = [
   {
     name: "Prabhu Kumar",
     description: "Chief Advisor",
-    role: "21 yrs in Global Business Operations",
+    role: "21 yrs of exp in Global Business Operations",
     img: "/team/Prabhu Kumar.jpg",
   },
   {
     name: "Deepak Samant",
     description: "Head of EU",
-    role: "20 yrs, Cloud Solution Specialist",
+    role: "20 yrs of exp in Cloud Solution Specialist",
     img: "/team/Deepak Samanta.jpg",
   },
   {
@@ -168,7 +168,7 @@ export default function OurTeam() {
           {/* 📝 Text Section */}
           <div className="w-full md:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              To transform industry with research excellence, and transform
+              To transform industry with research excellence and transform
               research with industrial relevance.{" "}
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed">
@@ -208,7 +208,7 @@ export default function OurTeam() {
             <p className="text-sm text-green-400 mb-2">{member.role}</p>
 
             {/* Shared Description Reveal */}
-            <div className="text-sm text-gray-300 mt-4 opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-[500px] group-hover:mt-6 transition-all duration-500 overflow-hidden space-y-2">
+            <div className="text-sm text-gray-300 mt-4 text-justify opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-[500px] group-hover:mt-6 transition-all duration-500 overflow-hidden space-y-2">
               {member.description}
             </div>
           </div>
