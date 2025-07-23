@@ -292,7 +292,7 @@ export default function OurTeam() {
           ))}
         </div>
         <h2 className="text-3xl text-center md:text-4xl font-bold py-6">
-          Together, We Stand for Something Bigger
+          Together We Stand for Something Bigger
         </h2>
       </div>
       <Footer />
