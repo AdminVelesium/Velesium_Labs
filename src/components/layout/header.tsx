@@ -87,7 +87,7 @@ export default function Header() {
             </div>
             <button onClick={() => navigate("/")}>
               <span className="text-3xl tracking-wider font-inter uppercase">
-                Velesium Lab
+                Velesium Labs
               </span>
             </button>
           </div>

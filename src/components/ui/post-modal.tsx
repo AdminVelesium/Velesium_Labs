@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react"; // Add this at the top
 
 type Post = {
   id: string;
@@ -21,12 +22,23 @@ export default function PostModal({
   post: Post | null;
   onClose: () => void;
 }) {
+  useEffect(() => {
+    if (post) {
+      // Lock scroll
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      // Unlock scroll when modal closes
+      document.body.style.overflow = "";
+    };
+  }, [post]);
+
   if (!post) return null;
 
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-50 flex items-center justify-center px-4"
+        className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-50 flex items-start justify-center px-4 py-10 overflow-y-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useEffect } from "react";
+
 import PostModal from "@/components/ui/post-modal";
 import BackgroundManager from "@/components/backgrounds/background-manager";
 import CustomCursor from "@/components/ui/custom-cursor";
 import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 
 type Post = {
   id: string;
@@ -182,6 +185,7 @@ export default function HomePage() {
       </div>
 
       <PostModal post={selectedPost} onClose={() => setSelectedPost(null)} />
+      <Footer />
     </div>
   );
 }

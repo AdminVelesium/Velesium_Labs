@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import Header from "@/components/layout/header";
 import CustomCursor from "@/components/ui/custom-cursor";
 import Footer from "@/components/layout/footer";
@@ -8,106 +9,159 @@ import BackgroundManager from "@/components/backgrounds/background-manager";
 
 const services = [
   {
-    title: "For High Schoolers with Big Dreams 🚀",
+    title: "For High Schoolers with Big Dreams",
     description:
-      "Dreaming of MIT or the Ivy League? We help you stand out with research portfolios, capstone projects, and hands-on AI experience—far beyond just grades.",
+      "Aiming for MIT or Ivy League? We help you stand out with research portfolios, capstone projects, and hands-on AI experience — far beyond just grades.",
   },
   {
-    title: "For Freshers Starting Their Data Journey 🎯",
+    title: "For Freshers Starting in Data & AI",
     description:
-      "Gain confidence and resume-worthy experience with real industry problems from day one. No fluff—just real projects and mentorship.",
+      "Work on real industry problems, gain portfolio-ready experience, and receive mentorship from AI experts — no more theory-only learning.",
   },
   {
-    title: "For Professionals and Enterprise Teams 💼",
+    title: "For Professionals & Enterprise Teams",
     description:
-      "Upskill in AI, MLOps, DevOps or Data Engineering. Our training mirrors real-world scenarios to help you scale capabilities fast.",
+      "Upskill in AI, MLOps, DevOps, and Data Engineering with real-world case studies to help your team implement production-ready solutions.",
   },
 ];
 
-export default function page() {
+const focusAreas = [
+  "Artificial Intelligence & Machine Learning (AI/ML)",
+  "Capstone Research Projects",
+  "Agentic AI",
+  "GenAI",
+  "Natural Language Processing (NLP)",
+  "Computer Vision",
+  "MLOps & DevOps for AI Deployment",
+  "Mathematical Modeling & Simulation",
+  "Custom AI Curriculum for Schools & Colleges",
+];
+export default function Page() {
+  const router = useRouter();
   return (
     <div className="bg-black text-white">
       <BackgroundManager />
-
       <CustomCursor />
+      <Header />
       <Header />
 
       {/* Hero Section */}
-      <section className="text-center font-sans px-6 pt-24">
+      <section className="text-center px-6 pt-32 font-now font-bold">
         <motion.h1
-          className="text-4xl md:text-6xl font-bold "
-          initial={{ opacity: 0, y: 20 }}
+          className="text-5xl md:text-7xl leading-tight tracking-tight"
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Velesium
-          <span className="text-green-400"> Academy</span>
-          <div className="text-2xl"> Learn by Doing. Build What Matters.</div>
+          Velesium <span className="text-green-400">Academy</span>
         </motion.h1>
+        <motion.h2
+          className="text-2xl md:text-3xl text-white/80 mt-4 font-light"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          Learn Like a Researcher. Build Like a Leader.
+        </motion.h2>
         <motion.p
           className="text-lg md:text-xl text-gray-400 mt-6 max-w-3xl mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          transition={{ delay: 0.6 }}
         >
-          From Ivy League aspirants to working professionals—build real-world
-          skills with mentorship, bootcamps, and hands-on projects in AI,
-          DevOps, and beyond.
+          A new learning model that merges curiosity, critical thinking, and
+          real-world AI projects — from school students to enterprise teams.
         </motion.p>
-        <br />
-        <br />
       </section>
 
-      {/* Services Grid */}
-      <section className="grid md:grid-cols-3 font-poppins gap-20 px-6 md:px-20 ">
+      {/* Who We Cater To */}
+      <section className="grid md:grid-cols-3 gap-12 py-24 px-6 md:px-20  font-poppins">
         {services.map((item, idx) => (
           <motion.div
             key={idx}
-            className="bg-zinc-900 p-6 rounded-2xl border border-green-500 hover:scale-105 transition-transform"
-            initial={{ opacity: 0, y: 30 }}
+            className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-3xl border border-zinc-700 shadow-lg hover:scale-[1.03] transition-transform duration-300"
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: idx * 0.2 }}
+            transition={{ duration: 0.5, delay: idx * 0.2 }}
           >
-            <h3 className="text-2xl font-semibold text-green-400 mb-3">
+            <h3 className="text-xl font-semibold text-green-400 mb-3">
               {item.title}
             </h3>
-            <p className="text-gray-400 text-base">{item.description}</p>
+            <p className="text-gray-300">{item.description}</p>
           </motion.div>
         ))}
       </section>
 
-      {/* Features List */}
-      <section className="text-center font-poppins py-20">
-        <motion.div
+      {/* What Makes Us Different */}
+      <section className="py-20 bg-black text-center">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-green-400 mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold mb-6 text-green-400">
-            What Makes Velesium Academy Different?
-          </h2>
-          <ul className="space-y-4 text-gray-300 text-lg list-disc list-inside">
-            <li>
-              <strong className="text-white">Learn by Doing:</strong> Jump
-              straight into real projects and proofs of concept.
-            </li>
-            <li>
-              <strong className="text-white">Beyond Just Data Science:</strong>{" "}
-              Full-spectrum training across AI, DevOps, and Engineering.
-            </li>
-            <li>
-              <strong className="text-white">Tailored for All Learners:</strong>{" "}
-              High schoolers, freshers, pros, and enterprise teams.
-            </li>
-            <li>
-              <strong className="text-white">Bootcamps & Mentorship:</strong>{" "}
-              Personal guidance to launch your AI career or project.
-            </li>
-          </ul>
-        </motion.div>
+          What Makes Velesium Academy Different?
+        </motion.h2>
+        <ul className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-left text-white/80 px-6 md:px-0 font-poppins">
+          <li>
+            <span className="text-green-400 font-bold">Learn by Doing:</span>{" "}
+            Real projects & use cases from day one.
+          </li>
+          <li>
+            <span className="text-green-400 font-bold">Full Stack AI:</span>{" "}
+            From ML to MLOps, cloud, DevOps, and pipelines.
+          </li>
+          <li>
+            <span className="text-green-400 font-bold">For All Levels:</span>{" "}
+            High schoolers, freshers, and enterprise pros.
+          </li>
+          <li>
+            <span className="text-green-400 font-bold">Mentorship:</span>{" "}
+            Bootcamps & 1:1 support from real AI engineers.
+          </li>
+        </ul>
       </section>
+
+      {/* Core Focus Areas */}
+      <section className="py-24 px-6 ">
+        <h2 className="text-center text-3xl font-bold text-green-400 mb-12">
+          Core Focus Areas
+        </h2>
+        <div className="grid text-center font-bold md:grid-cols-2 lg:grid-cols-3 gap-10 text-white/90 font-light">
+          {focusAreas.map((area, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-zinc-800 rounded-xl p-6 hover:border-green-500 border border-transparent transition-all"
+            >
+              <p>{area}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Collaboration Section */}
+      <section className="py-24 text-center text-white px-6">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          Collaborate With Us
+        </h2>
+        <p className="text-lg max-w-3xl mx-auto mb-10 text-white/80">
+          We actively partner with universities, research institutes, ed-tech
+          platforms, and businesses to co-create educational experiences and
+        </p>
+        <button
+          onClick={() => router.push("/Contact")}
+          className="bg-green-500 hover:bg-green-400 transition-colors text-black px-6 py-3 rounded-full font-semibold"
+        >
+          Contact Us
+        </button>
+      </section>
+
       <Footer />
     </div>
   );

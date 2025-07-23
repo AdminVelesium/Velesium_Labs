@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingScreen from "./loading-screen";
+import Lenis from "lenis";
 
 export default function ClientLayout({
   children,
@@ -9,7 +10,17 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   const [loadingFinished, setLoadingFinished] = useState(false);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const lenisInstance = new Lenis();
 
+    function raf(time: any) {
+      lenisInstance.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
   return (
     <div className="relative">
       {/* Render content immediately but fade it in behind the loader */}

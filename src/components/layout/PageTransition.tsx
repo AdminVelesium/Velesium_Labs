@@ -1,4 +1,3 @@
-// components/PageTransition.tsx
 "use client";
 import { motion } from "framer-motion";
 
@@ -7,15 +6,32 @@ type Props = {
 };
 
 export default function PageTransition({ phase }: Props) {
-  const y = phase === "cover" ? "0%" : phase === "reveal" ? "100%" : "-100%";
+  const isVisible = phase !== "hidden";
 
   return (
-    <motion.div
-      initial={{ y: "-100%" }}
-      animate={{ y }}
-      transition={{ duration: 1, ease: "easeInOut" }}
-      className="fixed top-0 left-0 w-full h-full bg-black z-[9999]"
-      style={{ pointerEvents: phase === "hidden" ? "none" : "auto" }}
-    />
+    <>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="fixed inset-0 bg-black z-[9999] flex items-center justify-center"
+        >
+          <motion.img
+            src="/Logo_White with c.png"
+            alt="Velesium Logo"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 1.2,
+              ease: "easeInOut",
+              delay: 0,
+            }}
+            className="w-64 h-64 object-contain" // Bigger logo: 256px x 256px
+          />
+        </motion.div>
+      )}
+    </>
   );
 }

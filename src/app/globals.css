@@ -112,6 +112,13 @@ html::-webkit-scrollbar {
 ::selection {
   background: rgba(66, 200, 100, 0.3); /* Green selection color */
 }
+.clip-left {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.clip-right {
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
 
 /* Loading screen */
 .loading-screen {

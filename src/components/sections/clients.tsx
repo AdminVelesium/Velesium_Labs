@@ -7,6 +7,7 @@ import Image from "next/image"; // Import Image component
 const logos: string[] = [
   "/itc.png",
   "/lilly.png",
+  "/clima.png",
   "/maersk.png",
   "/MERCELL.png",
   "/swiggy.png",
@@ -14,6 +15,7 @@ const logos: string[] = [
   "/Delhivery.png",
   "/itc.png",
   "/lilly.png",
+  "/clima.png",
   "/maersk.png",
   "/MERCELL.png",
   "/swiggy.png",
@@ -21,6 +23,7 @@ const logos: string[] = [
   "/Delhivery.png",
   "/itc.png",
   "/lilly.png",
+  "/clima.png",
   "/maersk.png",
   "/MERCELL.png",
   "/swiggy.png",
@@ -28,6 +31,7 @@ const logos: string[] = [
   "/Delhivery.png",
   "/itc.png",
   "/lilly.png",
+  "/clima.png",
   "/maersk.png",
   "/MERCELL.png",
   "/swiggy.png",
@@ -95,7 +99,7 @@ export default function Clients() {
                   alt={`Client ${index}`}
                   width={128}
                   height={64}
-                  className="w-32 h-16 object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                  className="w-32 h-16 grayscale object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
                 />
               ))}
             </div>

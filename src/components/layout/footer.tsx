@@ -1,28 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { Instagram, Twitter, Dribbble } from "lucide-react";
+import { Instagram, Twitter, Dribbble, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const footer = footerRef.current;
-    if (!footer) return;
-
-    gsap.from(footer.children, {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: footer,
-        start: "top 90%",
-      },
-    });
-  }, []);
 
   return (
     <footer
@@ -49,9 +31,9 @@ export default function Footer() {
           </div>
 
           <div className="flex space-x-6">
-            <Instagram className="w-5 h-5 hover:text-orange-400 transition-colors cursor-pointer magnetic-button" />
-            <Twitter className="w-5 h-5 hover:text-orange-400 transition-colors cursor-pointer magnetic-button" />
-            <Dribbble className="w-5 h-5 hover:text-orange-400 transition-colors cursor-pointer magnetic-button" />
+            <Instagram className="w-5 h-5 hover:text-green-400 transition-colors cursor-pointer magnetic-button" />
+            <Twitter className="w-5 h-5 hover:text-green-400 transition-colors cursor-pointer magnetic-button" />
+            <Linkedin className="w-5 h-5 hover:text-green-400 transition-colors cursor-pointer magnetic-button" />
           </div>
         </div>
 
