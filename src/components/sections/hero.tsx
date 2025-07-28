@@ -12,19 +12,29 @@ export default function Hero() {
 
   useEffect(() => {
     const hasSeenHero = sessionStorage.getItem("hasSeenHero");
+    const isMobile = window.innerWidth < 768;
 
     if (!hasSeenHero) {
-      const typeTimer = setTimeout(() => setStartTyping(true), 4000);
-      const descTimer = setTimeout(() => {
-        animateDescription();
-        setShowDescription(true);
-      }, 7000);
-      sessionStorage.setItem("hasSeenHero", "true");
+      if (!isMobile) {
+        const typeTimer = setTimeout(() => setStartTyping(true), 4000);
+        const descTimer = setTimeout(() => {
+          animateDescription();
+          setShowDescription(true);
+        }, 7000);
 
-      return () => {
-        clearTimeout(typeTimer);
-        clearTimeout(descTimer);
-      };
+        sessionStorage.setItem("hasSeenHero", "true");
+
+        return () => {
+          clearTimeout(typeTimer);
+          clearTimeout(descTimer);
+        };
+      } else {
+        // On mobile, skip delay and show immediately
+        setStartTyping(true);
+        setShowDescription(true);
+        animateDescription();
+        sessionStorage.setItem("hasSeenHero", "true");
+      }
     } else {
       setStartTyping(true);
       setShowDescription(true);
