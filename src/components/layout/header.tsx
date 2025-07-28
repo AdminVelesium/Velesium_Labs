@@ -4,17 +4,20 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import PageTransition from "./PageTransition";
-import { Home } from "lucide-react";
+import { Home, Menu } from "lucide-react";
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const desktopDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
+
   const [phase, setPhase] = useState<"hidden" | "cover" | "reveal">("hidden");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Hide/Show header on scroll
+  // Scroll hide/show logic
   useEffect(() => {
     const header = headerRef.current;
     if (!header) return;
@@ -34,10 +37,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Navigate with page transition
+  // Page transition logic
   const navigate = (href: string) => {
     if (href === pathname) return;
-    setIsDropdownOpen(false);
+    setIsDropdownOpen(false); // Close mobile menu if open
     setPhase("cover");
     setTimeout(() => router.push(href), 1000);
   };
@@ -54,10 +57,15 @@ export default function Header() {
   // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      const target = event.target as Node;
+      const isOutsideDesktop =
+        desktopDropdownRef.current &&
+        !desktopDropdownRef.current.contains(target);
+      const isOutsideMobile =
+        mobileDropdownRef.current &&
+        !mobileDropdownRef.current.contains(target);
+
+      if (isOutsideDesktop && isOutsideMobile) {
         setIsDropdownOpen(false);
       }
     };
@@ -69,6 +77,7 @@ export default function Header() {
   return (
     <>
       <PageTransition phase={phase} />
+
       <header
         ref={headerRef}
         className="fixed top-0 left-0 right-0 z-40 p-6 md:p-8"
@@ -86,13 +95,13 @@ export default function Header() {
               </button>
             </div>
             <button onClick={() => navigate("/")}>
-              <span className="text-3xl tracking-wider font-inter uppercase">
+              <span className="text-3xl tracking-wider font-poppins uppercase">
                 Velesium Labs
               </span>
             </button>
           </div>
 
-          {/* Navigation Links */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex font-inter items-center space-x-9">
             <button
               onClick={() => navigate("/Team")}
@@ -102,8 +111,8 @@ export default function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-300"></span>
             </button>
 
-            {/* Our Works (Click Dropdown) */}
-            <div className="relative group" ref={dropdownRef}>
+            {/* Our Works Dropdown */}
+            <div className="relative group">
               <button
                 onClick={() => setIsDropdownOpen((prev) => !prev)}
                 className="text-lg font-light hover:text-green-400 transition-colors duration-300 relative"
@@ -113,7 +122,10 @@ export default function Header() {
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute left-0 top-full mt-2 flex flex-col min-w-[200px] z-50 bg-black/90 rounded-lg overflow-hidden border border-zinc-700 shadow-lg">
+                <div
+                  ref={desktopDropdownRef}
+                  className="absolute left-0 top-full mt-2 flex flex-col min-w-[200px] z-50 bg-black/90 rounded-lg overflow-hidden border border-zinc-700 shadow-lg"
+                >
                   <button
                     onClick={() => navigate("/Solutions")}
                     className="text-left px-4 py-2 hover:text-green-400 text-white"
@@ -163,6 +175,68 @@ export default function Header() {
                   <span className="absolute -bottom-0.5 left-0 h-0.5 w-0 bg-green-400 group-hover:w-full transition-all duration-300"></span>
                 </span>
               </button>
+            )}
+          </div>
+
+          {/* Mobile Menu */}
+          <div className="md:hidden relative">
+            <button
+              onClick={() => setIsDropdownOpen((prev) => !prev)}
+              className="text-white"
+            >
+              <Menu className="w-7 h-7" />
+            </button>
+
+            {isDropdownOpen && (
+              <div
+                ref={mobileDropdownRef}
+                className="absolute right-0 top-full mt-2 w-48 bg-black/90 border border-zinc-700 rounded-lg shadow-lg z-50 flex flex-col"
+              >
+                <button
+                  onClick={() => navigate("/Team")}
+                  className="px-4 py-2 text-left text-white hover:text-green-400"
+                >
+                  Our Team
+                </button>
+                <button
+                  onClick={() => navigate("/Solutions")}
+                  className="px-4 py-2 text-left text-white hover:text-green-400"
+                >
+                  Our Solutions
+                </button>
+                <button
+                  onClick={() => navigate("/Products")}
+                  className="px-4 py-2 text-left text-white hover:text-green-400"
+                >
+                  Our Products
+                </button>
+                <button
+                  onClick={() => navigate("/Blogs")}
+                  className="px-4 py-2 text-left text-white hover:text-green-400"
+                >
+                  Blogs
+                </button>
+                <button
+                  onClick={() => navigate("/Academy")}
+                  className="px-4 py-2 text-left text-white hover:text-green-400"
+                >
+                  Velesium Academy
+                </button>
+                <button
+                  onClick={() => navigate("/Contact")}
+                  className="px-4 py-2 text-left text-white hover:text-green-400"
+                >
+                  Contact
+                </button>
+                {pathname !== "/" && (
+                  <button
+                    onClick={() => navigate("/")}
+                    className="px-4 py-2 text-left text-white hover:text-green-400"
+                  >
+                    Home
+                  </button>
+                )}
+              </div>
             )}
           </div>
         </nav>

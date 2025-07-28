@@ -170,7 +170,9 @@ export default function OurTeam() {
       <BackgroundManager />
       {/* Header */}
       <div className="max-w-5xl mx-auto text-center mb-16">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Meet the Team</h1>
+        <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6">
+          Meet the Team
+        </h1>
       </div>
       <div className="max-w-6xl mx-auto mb-24 px-4 md:px-0">
         <div className="flex flex-col md:flex-row items-center gap-10">
@@ -185,7 +187,7 @@ export default function OurTeam() {
           </div>
 
           {/* 📝 Text Section */}
-          <div className="w-full md:w-1/2">
+          <div className="w-full font-inter md:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               To transform industry with research excellence and transform
               research with industrial relevance.{" "}
@@ -199,7 +201,7 @@ export default function OurTeam() {
           </div>
         </div>
       </div>
-      <h2 className="text-4xl font-bold mb-10 text-center">
+      <h2 className="text-4xl font-bold font-inter mb-10 text-center">
         Founders Leading the Vision
       </h2>{" "}
       <div className="group grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto mb-24">

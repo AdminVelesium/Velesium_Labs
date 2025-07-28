@@ -4,6 +4,20 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { motion } from "framer-motion";
 
+// Mobile detection hook (you can move this to a separate file if you want)
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  return isMobile;
+}
+
 const values = [
   {
     title: "Smart Data",
@@ -27,20 +41,21 @@ const values = [
   },
 ];
 
-// Fixed layout positions (center + four around)
+// Fixed layout positions for desktop
 const positions = [
-  { x: -340, y: -180 }, // Far top-left
-  { x: 340, y: -180 }, // Far top-right
+  { x: -340, y: -180 }, // Top-left
+  { x: 340, y: -180 }, // Top-right
   { x: 0, y: 0 }, // Center
-  { x: -340, y: 220 }, // Far bottom-left
-  { x: 340, y: 220 }, // Far bottom-right
+  { x: -340, y: 220 }, // Bottom-left
+  { x: 340, y: 220 }, // Bottom-right
 ];
 
 export default function Values() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const [order, setOrder] = useState([0, 1, 2, 3, 4]); // Initial order of values
+  const [order, setOrder] = useState([0, 1, 2, 3, 4]); // Initial order
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isMobile = useIsMobile();
 
   // Rotate values by shifting array
   const rotateValues = useCallback(() => {
@@ -52,7 +67,7 @@ export default function Values() {
     });
   }, []);
 
-  // Start or restart auto rotation interval
+  // Auto-rotate logic
   const startAutoRotation = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -63,12 +78,13 @@ export default function Values() {
     }, 5000);
   }, [rotateValues]);
 
+  // GSAP + title setup
   useEffect(() => {
     const section = sectionRef.current;
     const title = titleRef.current;
     if (!section || !title) return;
 
-    // Animate title words with GSAP
+    // Animate heading
     const titleWords = ["Our", "Values"];
     title.innerHTML = titleWords
       .map((word, i) => {
@@ -76,6 +92,7 @@ export default function Values() {
         return `<span class="word inline-block mr-2 ${colorClass}">${word}</span>`;
       })
       .join(" ");
+
     const words = title.querySelectorAll(".word");
     gsap.set(words, { y: 100, opacity: 0 });
     gsap.to(words, {
@@ -90,7 +107,6 @@ export default function Values() {
     // Start auto rotation
     startAutoRotation();
 
-    // Cleanup interval on unmount
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -99,7 +115,7 @@ export default function Values() {
     };
   }, [startAutoRotation]);
 
-  // When box clicked, rotate so clicked box comes to center (posIdx 2)
+  // Handle click on card to center it
   const handleClick = (clickedPosIdx: number) => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -131,15 +147,31 @@ export default function Values() {
       className="relative py-20 px-6 md:px-8"
     >
       <div className="max-w-6xl mx-auto w-full">
-        <div className="space-y-4">
-          <h2
-            ref={titleRef}
-            className="text-5xl font-bold text-white font-sans text-center mb-8"
-          >
-            {/* GSAP will inject animated title */}
-          </h2>
+        <h2
+          ref={titleRef}
+          className="text-5xl font-bold text-white font-poppins text-center mb-12"
+        >
+          {/* GSAP will inject text */}
+        </h2>
 
-          <div className="relative w-full h-[480px] flex items-center justify-center -mt-4 md:-mt-6 font-poppins">
+        {/* Mobile layout */}
+        {isMobile ? (
+          <div className="flex flex-col gap-6 font-inter">
+            {values.map((value, i) => (
+              <div
+                key={i}
+                className="w-full bg-gradient-to-b from-green-900/70 to-black border border-green-500 p-6 rounded-xl shadow-md"
+              >
+                <h4 className="text-xl font-semibold text-green-400 mb-2">
+                  {value.title}
+                </h4>
+                <p className="text-gray-300 text-sm">{value.desc}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          // Desktop animated layout
+          <div className="relative w-full h-[480px] flex items-center justify-center -mt-4 md:-mt-6 font-inter">
             {order.map((valIdx, posIdx) => {
               const value = values[valIdx];
               const isCenter = posIdx === 2;
@@ -168,7 +200,7 @@ export default function Values() {
               );
             })}
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

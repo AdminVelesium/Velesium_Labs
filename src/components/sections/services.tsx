@@ -80,7 +80,7 @@ export default function Services() {
     <section id="team" ref={sectionRef} className="relative py-20 px-6 md:px-8">
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="w-full text-center">
-          <h2 className="text-5xl font-bold text-white font-sans text-center mb-4">
+          <h2 className="text-5xl font-bold text-white font-poppins text-center mb-4">
             <span className="relative inline-block">
               <span className="text-white">Our</span>
               <span className="absolute left-0 bottom-[-6px] h-[2px] w-[150%] bg-green-400"></span>
@@ -88,12 +88,12 @@ export default function Services() {
             <span className="text-green-400 ml-2">Services</span>
           </h2>
 
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-4 mt-2">
+          <p className="text-gray-300 text-lg font-poppins max-w-1xl mx-auto mb-4 mt-2">
             Your partner in building scalable, intelligent AI systems that
             deliver real business value.
           </p>
 
-          <div className="grid gap-4 text-left mt-2 font-poppins">
+          <div className="grid gap-4 text-left mt-2 font-inter">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.slice(0, 8).map((service, index) => (
                 <motion.div

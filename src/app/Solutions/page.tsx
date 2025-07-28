@@ -145,7 +145,7 @@ export default function ObysWorksPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+    <div className="min-h-screen bg-black text-white font-poppins">
       <Header />
       <CustomCursor />
       <BackgroundManager />
@@ -154,36 +154,44 @@ export default function ObysWorksPage() {
           Our Solution
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {worksData.map((item) => (
-            <div
-              key={item.id}
-              className={`${item.marginTop} ${
-                "align" in item && item.align === "left"
-                  ? "md:col-start-1"
-                  : "align" in item && item.align === "right"
-                  ? "md:col-start-3"
-                  : "align" in item && item.align === "center"
-                  ? "md:col-start-2"
-                  : ""
-              } flex justify-center items-center`}
-            >
-              {"type" in item && item.type === "coming-soon" ? (
-                <div className="w-64 h-64 rounded-full border border-gray-600 flex items-center justify-center text-gray-500 text-sm text-center">
-                  More works are coming soon...
-                </div>
-              ) : "projectId" in item ? (
-                <WorkItem {...item} onProjectClick={setSelectedProjectId} />
-              ) : (
-                <WorkItem {...item} />
-              )}
-            </div>
-          ))}
+          {worksData.map((item) => {
+            const isArrow = "type" in item && item.type === "arrow";
+            const isComingSoon = "type" in item && item.type === "coming-soon";
+            const isProject = "projectId" in item;
+
+            return (
+              <div
+                key={item.id}
+                className={`${item.marginTop} ${
+                  "align" in item && item.align === "left"
+                    ? "md:col-start-1"
+                    : "align" in item && item.align === "right"
+                    ? "md:col-start-3"
+                    : "align" in item && item.align === "center"
+                    ? "md:col-start-2"
+                    : ""
+                } flex justify-center items-center ${
+                  isArrow ? "hidden md:flex" : ""
+                }`}
+              >
+                {isComingSoon ? (
+                  <div className="w-64 h-64 rounded-full border border-gray-600 flex items-center justify-center text-gray-500 text-sm text-center">
+                    More works are coming soon...
+                  </div>
+                ) : isProject ? (
+                  <WorkItem {...item} onProjectClick={setSelectedProjectId} />
+                ) : (
+                  <WorkItem {...item} />
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 
       {selectedProject && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4">
-          <div className="bg-black text-white rounded-lg max-w-3xl w-full p-6 relative overflow-y-auto max-h-[90vh] border border-white">
+          <div className="bg-black text-white rounded-lg w-full max-w-3xl p-4 sm:p-6 relative overflow-y-auto max-h-[90vh] border border-white text-sm sm:text-base">
             <button
               onClick={closeModal}
               className="absolute top-2 right-2 text-white hover:text-gray-400 text-xl"

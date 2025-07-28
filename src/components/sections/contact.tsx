@@ -128,7 +128,7 @@ export default function Contact() {
             </h2>
 
             <div className="w-24 h-1 bg-green-500 mb-8"></div>
-            <p className="text-base md:text-lg text-gray-300 mb-8">
+            <p className="text-base md:text-lg text-gray-300 font-poppins mb-8">
               Ready to bring your vision to life? Get in touch and let's create
               something amazing together.
             </p>
@@ -147,7 +147,7 @@ export default function Contact() {
           </div>
 
           {/* Right Side: Form or Messages */}
-          <div ref={formRef} className="w-full max-w-md ml-auto">
+          <div ref={formRef} className="w-full max-w-md ml-auto font-inter">
             {submitSuccess && (
               <div className="px-6 py-4 rounded bg-green-600/80 text-white font-semibold ring-2 ring-green-400">
                 {submitSuccess}
@@ -165,14 +165,14 @@ export default function Contact() {
                   name="fullName"
                   placeholder="Your Name"
                   required
-                  className="w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-400 py-2 focus:outline-none"
+                  className="w-full bg-transparent border-b border-gray-600 text-white placeholder-white py-2 focus:outline-none"
                 />
                 <input
                   type="email"
                   name="email"
                   placeholder="Your Email"
                   required
-                  className="w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-400 py-2 focus:outline-none"
+                  className="w-full bg-transparent border-b border-gray-600 text-white placeholder-white py-2 focus:outline-none"
                 />
                 <select
                   name="heardFrom"
@@ -180,7 +180,7 @@ export default function Contact() {
                   defaultValue=""
                   className="w-full bg-transparent border-b border-gray-600 text-white py-2 focus:outline-none appearance-none"
                 >
-                  <option value="" className="text-gray-400" disabled hidden>
+                  <option value="" className="text-white " disabled hidden>
                     How did you hear about us?
                   </option>
                   <option className="bg-black text-white" value="LinkedIn">
@@ -213,7 +213,7 @@ export default function Contact() {
                   name="message"
                   placeholder="Your Message"
                   required
-                  className="w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-400 py-2 focus:outline-none"
+                  className="w-full bg-transparent border-b border-gray-600 text-white placeholder-white py-2 focus:outline-none"
                   rows={4}
                 ></textarea>
                 <button

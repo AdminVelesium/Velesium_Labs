@@ -111,7 +111,6 @@ const blogPosts: Post[] = [
     conclusion:
       "By reducing the need to send data to the cloud, Edge AI delivers fast, secure, and scalable intelligence—anywhere.",
   },
-  // Repeat one or two cards to ensure grid balance if needed
   {
     id: "9",
     title: "🔒 Privacy Engineering: Building Trust into Tech",
@@ -148,29 +147,28 @@ export default function HomePage() {
       <CustomCursor />
       <Header />
       <div className="container mx-auto mb-12 text-center">
-        <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           Our Latest Blogs
         </h1>
-        <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+        <p className="text-base sm:text-xl text-gray-400 max-w-2xl mx-auto">
           Insights, trends, and ideas shaping the future of technology — curated
           by our team.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[250px] gap-x-8 gap-y-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[200px] sm:auto-rows-[250px] gap-x-8 gap-y-10">
         {blogPosts.map((post, index) => {
           const span = spanStyles[index % spanStyles.length];
-
           return (
             <div
               key={post.id}
               onClick={() => setSelectedPost(post)}
-              className={`relative rounded-xl overflow-hidden group cursor-pointer border border-white/10 hover:border-white/20 transition-colors duration-300 ${span}`}
+              className={`relative rounded-xl overflow-hidden group cursor-pointer border border-white/10 hover:border-white/20 transition-colors duration-300 col-span-1 row-span-1 sm:${span}`}
             >
               <img
                 src={post.image}
                 alt={post.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors" />
               <div className="absolute z-10 bottom-4 left-4 right-4">
