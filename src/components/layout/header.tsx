@@ -95,7 +95,7 @@ export default function Header() {
               </button>
             </div>
             <button onClick={() => navigate("/")}>
-              <span className="text-3xl tracking-wider font-poppins uppercase">
+              <span className="text-3xl tracking-wider font-urbanist uppercase">
                 Velesium Labs
               </span>
             </button>
@@ -105,20 +105,38 @@ export default function Header() {
           <div className="hidden md:flex font-inter items-center space-x-9">
             <button
               onClick={() => navigate("/Team")}
-              className="text-lg font-light hover:text-green-400 transition-colors duration-300 relative group"
+              className={`text-lg font-light transition-colors duration-300 relative group ${
+                pathname === "/Team" ? "text-green-400" : "hover:text-green-400"
+              }`}
             >
               Our Team
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-300"></span>
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
+                  pathname === "/Team"
+                    ? "w-full bg-green-400"
+                    : "w-0 bg-green-400 group-hover:w-full"
+                }`}
+              ></span>
             </button>
 
             {/* Our Works Dropdown */}
             <div className="relative group">
               <button
                 onClick={() => setIsDropdownOpen((prev) => !prev)}
-                className="text-lg font-light hover:text-green-400 transition-colors duration-300 relative"
+                className={`text-lg font-light transition-colors duration-300 relative ${
+                  ["/Solutions", "/Products", "/Blogs"].includes(pathname)
+                    ? "text-green-400"
+                    : "hover:text-green-400"
+                }`}
               >
                 Our Works
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-300"></span>
+                <span
+                  className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
+                    ["/Solutions", "/Products", "/Blogs"].includes(pathname)
+                      ? "w-full bg-green-400"
+                      : "w-0 bg-green-400 group-hover:w-full"
+                  }`}
+                ></span>
               </button>
 
               {isDropdownOpen && (
@@ -128,19 +146,31 @@ export default function Header() {
                 >
                   <button
                     onClick={() => navigate("/Solutions")}
-                    className="text-left px-4 py-2 hover:text-green-400 text-white"
+                    className={`text-left px-4 py-2 ${
+                      pathname === "/Solutions"
+                        ? "text-green-400"
+                        : "text-white hover:text-green-400"
+                    }`}
                   >
                     Our Solutions
                   </button>
                   <button
                     onClick={() => navigate("/Products")}
-                    className="text-left px-4 py-2 hover:text-green-400 text-white"
+                    className={`text-left px-4 py-2 ${
+                      pathname === "/Products"
+                        ? "text-green-400"
+                        : "text-white hover:text-green-400"
+                    }`}
                   >
                     Our Products
                   </button>
                   <button
                     onClick={() => navigate("/Blogs")}
-                    className="text-left px-4 py-2 hover:text-green-400 text-white"
+                    className={`text-left px-4 py-2 ${
+                      pathname === "/Blogs"
+                        ? "text-green-400"
+                        : "text-white hover:text-green-400"
+                    }`}
                   >
                     Blogs
                   </button>
@@ -150,18 +180,38 @@ export default function Header() {
 
             <button
               onClick={() => navigate("/Academy")}
-              className="text-lg font-light hover:text-green-400 transition-colors duration-300 relative group"
+              className={`text-lg font-light transition-colors duration-300 relative group ${
+                pathname === "/Academy"
+                  ? "text-green-400"
+                  : "hover:text-green-400"
+              }`}
             >
               Velesium Academy
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-300"></span>
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
+                  pathname === "/Academy"
+                    ? "w-full bg-green-400"
+                    : "w-0 bg-green-400 group-hover:w-full"
+                }`}
+              ></span>
             </button>
 
             <button
               onClick={() => navigate("/Contact")}
-              className="text-lg font-light hover:text-green-400 transition-colors duration-300 relative group"
+              className={`text-lg font-light transition-colors duration-300 relative group ${
+                pathname === "/Contact"
+                  ? "text-green-400"
+                  : "hover:text-green-400"
+              }`}
             >
               Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-300"></span>
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
+                  pathname === "/Contact"
+                    ? "w-full bg-green-400"
+                    : "w-0 bg-green-400 group-hover:w-full"
+                }`}
+              ></span>
             </button>
 
             {pathname !== "/" && (
@@ -192,42 +242,26 @@ export default function Header() {
                 ref={mobileDropdownRef}
                 className="absolute right-0 top-full mt-2 w-48 bg-black/90 border border-zinc-700 rounded-lg shadow-lg z-50 flex flex-col"
               >
-                <button
-                  onClick={() => navigate("/Team")}
-                  className="px-4 py-2 text-left text-white hover:text-green-400"
-                >
-                  Our Team
-                </button>
-                <button
-                  onClick={() => navigate("/Solutions")}
-                  className="px-4 py-2 text-left text-white hover:text-green-400"
-                >
-                  Our Solutions
-                </button>
-                <button
-                  onClick={() => navigate("/Products")}
-                  className="px-4 py-2 text-left text-white hover:text-green-400"
-                >
-                  Our Products
-                </button>
-                <button
-                  onClick={() => navigate("/Blogs")}
-                  className="px-4 py-2 text-left text-white hover:text-green-400"
-                >
-                  Blogs
-                </button>
-                <button
-                  onClick={() => navigate("/Academy")}
-                  className="px-4 py-2 text-left text-white hover:text-green-400"
-                >
-                  Velesium Academy
-                </button>
-                <button
-                  onClick={() => navigate("/Contact")}
-                  className="px-4 py-2 text-left text-white hover:text-green-400"
-                >
-                  Contact
-                </button>
+                {[
+                  { label: "Our Team", path: "/Team" },
+                  { label: "Our Solutions", path: "/Solutions" },
+                  { label: "Our Products", path: "/Products" },
+                  { label: "Blogs", path: "/Blogs" },
+                  { label: "Velesium Academy", path: "/Academy" },
+                  { label: "Contact", path: "/Contact" },
+                ].map((item) => (
+                  <button
+                    key={item.path}
+                    onClick={() => navigate(item.path)}
+                    className={`px-4 py-2 text-left ${
+                      pathname === item.path
+                        ? "text-green-400"
+                        : "text-white hover:text-green-400"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
                 {pathname !== "/" && (
                   <button
                     onClick={() => navigate("/")}

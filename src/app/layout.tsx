@@ -7,6 +7,7 @@ import {
   Plus_Jakarta_Sans,
   Poppins,
   Playfair_Display_SC,
+  Urbanist,
 } from "next/font/google";
 import ClientLayout from "@/components/ui/ClientLayout";
 import { Analytics } from "@vercel/analytics/next";
@@ -15,6 +16,12 @@ const playfairSC = Playfair_Display_SC({
   weight: "400",
   variable: "--font-now-outline",
 });
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-urbanist",
+});
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -48,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfairSC.variable} ${inter.variable} ${dmSans.variable} ${playfair.variable} ${jakarta.variable} ${poppins.variable} cursor-none`}
+        className={`${playfairSC.variable} ${inter.variable} ${dmSans.variable} ${playfair.variable} ${jakarta.variable} ${poppins.variable} ${urbanist.variable} cursor-none`}
       >
         <ClientLayout>
           {children}

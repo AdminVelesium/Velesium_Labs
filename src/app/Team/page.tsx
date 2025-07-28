@@ -47,7 +47,7 @@ const leadership = [
         <p>
           Featured by{" "}
           <a
-            href="https://yourstory.com/"
+            href="https://yourstory.com/2022/09/discite-data-solutions-bengaluru-startup-ai-ml-accessible-enterprises"
             target="_blank"
             rel="noopener noreferrer"
             className="text-green-400 font-semibold underline"

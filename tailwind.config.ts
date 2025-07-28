@@ -19,6 +19,7 @@ const config: Config = {
         jakarta: ["var(--font-jakarta)", "sans-serif"],
         poppins: ["var(--font-poppins)", "sans-serif"],
         nowOutline: ["var(--font-now-outline)", "serif"],
+        urbanist: ["var(--font-urbanist)", "sans-serif"],
       },
     },
   },
