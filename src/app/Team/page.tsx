@@ -194,7 +194,7 @@ export default function OurTeam() {
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed">
               One from the trenches of industry, the other from the heights of
-              research — The 2 Co-founders Moulindu and Abhishek have joined
+              research — The two Co-founders Moulindu and Abhishek have joined
               forces to build an ecosystem where cutting-edge AI solutions and
               world-class education fuel each other.
             </p>

@@ -141,7 +141,7 @@ export default function Contact() {
 
               <div className="contact-item flex items-center space-x-4">
                 <MapPin className="w-5 h-5 text-green-500" />
-                <span>Bangalore</span>
+                <span>Bangalore, India</span>
               </div>
             </div>
           </div>
